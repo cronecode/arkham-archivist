@@ -1,0 +1,12 @@
+example_id                                                | status  | run_time        |
+--------------------------------------------------------- | ------- | --------------- |
+./spec/controllers/campaigns_controller_spec.rb[1:1:1]    | passed  | 0.159 seconds   |
+./spec/controllers/static_pages_controller_spec.rb[1:1:1] | passed  | 0.00732 seconds |
+./spec/features/add_new_campaign_spec.rb[1:1]             | passed  | 5.63 seconds    |
+./spec/helpers/campaigns_helper_spec.rb[1:1]              | pending | 0.00001 seconds |
+./spec/helpers/static_pages_helper_spec.rb[1:1]           | pending | 0.00001 seconds |
+./spec/models/campaign_spec.rb[1:1]                       | passed  | 0.002 seconds   |
+./spec/models/campaign_spec.rb[1:2]                       | passed  | 0.00576 seconds |
+./spec/views/campaigns/new.html.erb_spec.rb[1:1]          | pending | 0 seconds       |
+./spec/views/static_pages/home.html.erb_spec.rb[1:1]      | pending | 0.00001 seconds |
+./spec/visit_google_spec.rb[1:1]                          | passed  | 0.01941 seconds |

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+DW+Pica+SC');
+
+$text-color: black;
+$navbar-default-link-color: black;
+$link-hover-decoration: none;
+$padding-large-vertical: 16px;
+
+body {
+  background-image: url('../images/cthulhu.jpg');
+}
+
+* {
+  font-family: 'IM Fell DW Pica SC', serif;
+  font-size: 25px;
+}
+
+.text-center {
+  margin-bottom: 20px;
+}
+
+.modal-dialog--relative {
+  margin: 10px;
+  position: relative;
+  width: auto;
+}
+
+ul {
+  list-style-image: url('../images/devourer-icon-17x19.png');
+}
+
+li {
+  padding-left: 20px;
+  padding-top: 10px;
+  a {
+    color: darkcyan;
+  }
+}
+
+.space-above {
+  margin-top: 50px;
+}
+
+.space-below {
+  margin-bottom: 30px;
+}
+
+p {
+  padding: 10px;
+}
