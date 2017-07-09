@@ -2,18 +2,17 @@ module Api
   class CampaignsController < ApiController
     def index
       campaigns = Campaign.all
-
-      respond_to do |format|
-        format.json { render json: campaigns }
-      end
+      render json: campaigns
     end
 
     def create
-      Campaign.new(campaign_params)
-      campaigns = Campaign.all
-
-      respond_to do |format|
-        format.json { render json: campaigns }
+      campaign = Campaign.new(campaign_params)
+      if campaign.save
+        render json: {
+          data: {
+            name: campaign.name
+          }
+        }, status: 200
       end
     end
 
