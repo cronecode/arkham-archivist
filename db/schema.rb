@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20170621163117) do
     t.integer "mental_trauma", default: 0
     t.integer "experience_earned", default: 0
     t.integer "unspent_experience", default: 0
-    t.text "deck_history"
   end
 
   create_table "scenarios", force: :cascade do |t|
