@@ -10,16 +10,16 @@ module Api
       if campaign.save
         render json: {
           data: {
-            name: campaign.name
-          }
-        }, status: 200
+            id: campaign.id
+          }, status: 200
+        }
       end
     end
 
     private
 
     def campaign_params
-      params.require(:campaign).permit(:cycle, :name)
+      params.require(:campaign).permit(:cycle, :id, :name)
     end
   end
 end
