@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Dropdown = ({ label, options }) => {
+const renderOptions = (options) => {
+  return options.map((option) => <option key={option.key} value={option.value}>{option.value}</option>)
+}
+
+const Dropdown = ({ label, name, options, onChange }) => {
   return (
     <div>
       <label>
@@ -9,7 +13,7 @@ const Dropdown = ({ label, options }) => {
           {label}
         </div>
         <div className="col-xs-8">
-          <select type="select">
+          <select type="select" name={name} onChange={onChange}>
             {renderOptions(options)}
           </select>
         </div>
@@ -20,11 +24,9 @@ const Dropdown = ({ label, options }) => {
 
 Dropdown.propTypes = {
   label: PropTypes.string,
-  options: PropTypes.array
-}
-
-const renderOptions = (options) => {
-  return options.map((option) => <option value={option.value}>{option.label}</option>)
+  name: PropTypes.string,
+  options: PropTypes.array,
+  onChange: PropTypes.function
 }
 
 export default Dropdown
