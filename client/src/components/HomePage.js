@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import ReactModal from 'react-modal'
 import Page from './Page'
 import Button from './Button'
+import LinkedButton from './LinkedButton'
 import NewCampaignForm from './NewCampaignForm'
 import daisy from '../images/daisy.jpg'
 
 class HomePage extends Component {
   constructor() {
-    super ()
+    super()
 
     this.state = { modalIsOpen: false }
 
@@ -21,10 +22,6 @@ class HomePage extends Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false })
-  }
-
-  newCampaign() {
-
   }
 
   render() {
@@ -42,10 +39,10 @@ class HomePage extends Component {
         </div>
         <div className="row">
           <div className="col-xs-12 col-sm-6 text-center">
-            <Button label="View Campaigns" icon="eye" />
+            <LinkedButton path="/api/campaigns" label="View Campaigns" icon="eye" />
           </div>
           <div className="col-xs-12 col-sm-6 text-center">
-            <Button label="New Campaign" icon="plus" onClick={this.openModal}/>
+            <Button onClick={this.openModal} label="New Campaign" icon="plus" />
           </div>
         </div>
       </Page>
