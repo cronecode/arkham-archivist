@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormField from './FormField'
 import Dropdown from './Dropdown'
 import Button from './Button'
+import request from 'superagent'
 
 class NewCampaignForm extends Component {
   constructor(props) {

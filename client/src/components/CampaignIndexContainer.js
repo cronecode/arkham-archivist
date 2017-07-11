@@ -9,17 +9,20 @@ class CampaignIndexContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/campaigns')
-      .then((response) => {
-        return response.json() })
-      .then((campaigns) => {
-        this.setState({ campaigns })
+    request
+      .get('/api/campaigns')
+      .then((res) => {
+        this.setState({ campaigns: res.body })
       })
   }
 
   render() {
+    const campaigns = this.state.campaigns
+
     return (
-      <CampaignIndex campaigns={this.state.campaigns} />
+      <Page>
+        <CampaignIndex campaigns={campaigns} />
+      </Page>
     )
   }
 }
