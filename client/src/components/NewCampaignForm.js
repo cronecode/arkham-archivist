@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import FormField from './FormField'
 import Dropdown from './Dropdown'
+import FormField from './FormField'
 import Button from './Button'
 import request from 'superagent'
 
@@ -9,7 +9,7 @@ class NewCampaignForm extends Component {
     super(props)
 
     this.state = {
-      cycle: '',
+      cycle: 'Night of the Zealot',
       name: ''
     }
 
@@ -18,9 +18,8 @@ class NewCampaignForm extends Component {
   }
 
   handleInputChange(e) {
-    const target = e.target
-    const value = target.value
-    const name = target.name
+    const name = e.target.name
+    const value = e.target.value
 
     this.setState({
       [name]: value
@@ -28,37 +27,36 @@ class NewCampaignForm extends Component {
   }
 
   onSubmit() {
-    fetch('/api/campaigns', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        credentials: 'include'
-      },
-      data: {
-        cycle: this.state.cycle,
-        name: this.state.name
-      }
-    })
+    const name = this.state.name
+    const cycle = this.state.cycle
+
+    request
+      .post('/api/campaigns')
+      .send({ name, cycle })
+      .end(() => {
+        window.location = '/api/campaigns'
+      })
   }
 
   render() {
     const options = [
       {
-        value: 1,
-        label: 'Night of the Zealot'
+        key: 1,
+        value: 'Night of the Zealot'
       },
       {
-        value: 2,
-        label: 'The Dunwich Legacy'
+        key: 2,
+        value: 'The Dunwich Legacy'
       }
     ]
+
     return (
       <div>
         <div className="row">
-          <Dropdown label="Cycle:" options={options} />
+          <Dropdown label="Cycle:" name="cycle" options={options} onChange={this.handleInputChange} />
         </div>
         <div className="row">
-          <FormField name="name" label="Name:" onChange={this.handleInputChange} />
+          <FormField label="Name:" name="name" onChange={this.handleInputChange} />
         </div>
         <div className="row">
           <div className="col-xs-6 pull-left">
