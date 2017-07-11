@@ -12,10 +12,25 @@ module Api
         @campaign.scenarios << cycle_scenarios
         render json: {
           data: {
-            id: @campaign.id,
+            id: @campaign.id
           }, status: 200
         }
       end
+    end
+
+    def show
+      @campaign = Campaign.find(params[:id])
+      render json: {
+        data: {
+          name: @campaign.name,
+          scenarios: @campaign.scenarios,
+          investigators: @campaign.investigators
+        }
+      }
+    end
+
+    def destroy
+      Campaign.find(params[:id]).destroy
     end
 
     private
