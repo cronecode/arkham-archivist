@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import request from 'superagent'
+import Modal from 'react-modal'
 import Page from './Page'
 import LinkedButton from './LinkedButton'
 import Button from './Button'
+import NewInvestigatorForm from './NewInvestigatorForm'
 
 class CampaignPage extends Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class CampaignPage extends Component {
     this.state = {
       name: '',
       scenarios: [],
-      investigators: []
+      investigators: [],
+      modalIsOpen: false
     }
   }
 
@@ -41,9 +44,20 @@ class CampaignPage extends Component {
     })
   }
 
+  openModal() {
+    this.setState({ modalIsOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false })
+  }
+
   render() {
     return (
       <Page>
+        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
+          <NewInvestigatorForm/>
+        </Modal>
         <div className="row">
           <div className="col-xs-6">
             <LinkedButton path="/api/campaigns" label="Back" icon="close" />
