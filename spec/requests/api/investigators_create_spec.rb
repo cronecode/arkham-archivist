@@ -6,7 +6,14 @@ RSpec.describe "/api/campaigns/:campaign_id/investigators", type: :request do
       campaign = FactoryGirl.create(:campaign)
 
       expect do
-        post api_campaign_investigators_path(campaign), params: { investigator: { name: "Jim Culver" }}
+        post api_campaign_investigators_path(campaign), params: {
+          campaign: {
+            id: campaign.id
+          },
+          investigator: {
+            name: "Jim Culver"
+          }
+        }
       end.to change { Investigator.count }.by(1)
 
       id = Investigator.last.id
