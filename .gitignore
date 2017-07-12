@@ -13,5 +13,10 @@
 !/log/.keep
 !/tmp/.keep
 
+client/node_modules
+
+spec/examples.txt
+
 .idea/
 npm-debug.log
+client/src/styles/*.css
