@@ -38,12 +38,6 @@ class CampaignPage extends Component {
     })
   }
 
-  renderInvestigators() {
-    return this.state.investigators.map((investigators) => {
-      return <li>{investigators.name}</li>
-    })
-  }
-
   openModal() {
     this.setState({ modalIsOpen: true })
   }
@@ -76,9 +70,7 @@ class CampaignPage extends Component {
             </div>
           </div>
           <div className="col-xs-7">
-            <ul>
-              {this.renderInvestigators()}
-            </ul>
+            <InvestigatorDisplay investigators={this.state.investigators} />
           </div>
         </div>
       </Page>
