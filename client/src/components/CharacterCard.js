@@ -2,7 +2,7 @@ import React from 'react'
 
 const CharacterCard = ({ name, physicalTrauma, mentalTrauma, experienceEarned, unspentXP }) => {
   return (
-    <div className="thumbnail">
+    <div className="card">
       <div className="row">
         <div className="col-xs-5">
           <img src={ require (`../images/${name}.png`) } alt={name} />
