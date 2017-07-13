@@ -19,12 +19,15 @@ module Api
     end
 
     def show
-      @campaign = Campaign.find(params[:id])
+      campaign = Campaign.find(params[:id])
+      scenarios = campaign.scenarios
+      investigators = campaign.investigators
+
       render json: {
         data: {
-          name: @campaign.name,
-          scenarios: @campaign.scenarios,
-          investigators: @campaign.investigators
+          name: campaign.name,
+          scenarios: scenarios,
+          investigators: investigators
         }
       }
     end
