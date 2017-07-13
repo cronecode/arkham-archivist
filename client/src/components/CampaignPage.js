@@ -5,6 +5,25 @@ import Page from './Page'
 import LinkedButton from './LinkedButton'
 import Button from './Button'
 import NewInvestigatorForm from './NewInvestigatorForm'
+import InvestigatorDisplay from './InvestigatorDisplay'
+
+String.prototype.toCamel = function () {
+  return this.replace(/(_[a-zA-Z])/g, function ($1) {
+    return $1.toUpperCase().replace('_', '')
+  })
+}
+
+function withCamelCaseKeys(obj) {
+  const newObjectWithCamelCaseKeys = {}
+  for (const key of Object.keys(obj)) {
+    if (obj[key] !== null && typeof obj[key] === 'object') {
+      newObjectWithCamelCaseKeys[key.toCamel()] = withCamelCaseKeys(obj[key])
+    } else {
+      newObjectWithCamelCaseKeys[key.toCamel()] = obj[key]
+    }
+  }
+  return newObjectWithCamelCaseKeys
+}
 
 class CampaignPage extends Component {
   constructor(props) {
@@ -26,8 +45,9 @@ class CampaignPage extends Component {
       .then((res) => {
         const name = res.body.data.name
         const scenarios = res.body.data.scenarios
-        const investigators = res.body.data.investigators
-
+        const investigators = res.body.data.investigators.map((investigator) => {
+          return withCamelCaseKeys(investigator)
+        })
         this.setState({ name, scenarios, investigators })
       })
   }
