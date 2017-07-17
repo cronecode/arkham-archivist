@@ -7,14 +7,11 @@ class NewInvestigatorForm extends Component {
     super(props)
 
     this.state = {
-      investigators: [
-        {name: 'Ashcan Pete'},
-        {name: 'Agnes Baker'},
-        {name: 'Daisy Walker'}
-      ],
+      investigators: this.props.investigators,
       remainingInvestigators: [],
       selected: ''}
     this.getRemainingInvestigators = this.getRemainingInvestigators.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   componentDidMount() {
@@ -35,10 +32,9 @@ class NewInvestigatorForm extends Component {
       { key: 9, value: 'Zoey Samaras'}
     ]
 
-    const possibleInvestigatorNames = possibleInvestigators.map((investigator) => { return investigator.value })
     const existingInvestigatorNames = this.state.investigators.map((investigator) => { return investigator.name })
 
-    return possibleInvestigatorNames.filter((name) => { return !existingInvestigatorNames.includes(name) })
+    return possibleInvestigators.filter((investigator) => { return !(existingInvestigatorNames.indexOf(investigator.value) > -1)})
   }
 
   handleSelect(e) {
