@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import request from 'superagent'
-import Modal from 'react-modal'
+import ReactModal from 'react-modal'
 import Page from './Page'
 import LinkedButton from './LinkedButton'
 import Button from './Button'
@@ -35,6 +35,10 @@ class CampaignPage extends Component {
       investigators: [],
       modalIsOpen: false
     }
+
+    this.renderScenarios = this.renderScenarios.bind(this)
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   componentDidMount() {
@@ -69,16 +73,27 @@ class CampaignPage extends Component {
   render() {
     return (
       <Page>
-        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
-          <NewInvestigatorForm/>
-        </Modal>
+        <ReactModal className="content modal-dialog" isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">New Investigator</h5>
+            </div>
+            <div className="modal-body">
+              <NewInvestigatorForm investigators={this.state.investigators} />
+            </div>
+            <div className="modal-footer">
+              <Button onClick={this.closeModal} label="Cancel" icon="trash" />
+              <Button onClick={this.closeModal} label="Save" icon="plus" />
+            </div>
+          </div>
+        </ReactModal>
         <div className="row">
           <div className="col-xs-6">
             <LinkedButton path="/api/campaigns" label="Back" icon="close" />
           </div>
           <div className="row">
             <div className="col-xs-6 text-center">
-              <Button label="Add Investigator" icon="plus" />
+              <Button onClick={this.openModal} label="Add Investigator" icon="plus" />
             </div>
           </div>
           <div className="col-xs-5">
